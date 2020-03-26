@@ -1,0 +1,59 @@
+MPLINK 4.49, Linker
+Linker Map File - Created Mon Nov 04 01:25:08 2019
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x000004
+                   .cinit    romdata   0x000002    program   0x000004
+                   .org_1       code   0x000004    program   0x000080
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000043      
+            68 out of 8454 program addresses used, program memory utilization is 0%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                   ARTTIR   0x00001e    program     static C:\Users\Shanyu\Desktop\mplab projeler\ilergeriSayma\ilerigeriSaymaKod.asm
+                    AZALT   0x000029    program     static C:\Users\Shanyu\Desktop\mplab projeler\ilergeriSayma\ilerigeriSaymaKod.asm
+                    BASLA   0x000015    program     static C:\Users\Shanyu\Desktop\mplab projeler\ilergeriSayma\ilerigeriSaymaKod.asm
+                       D1   0x000020    program     static C:\Users\Shanyu\Desktop\mplab projeler\ilergeriSayma\ilerigeriSaymaKod.asm
+                       D2   0x00002b    program     static C:\Users\Shanyu\Desktop\mplab projeler\ilergeriSayma\ilerigeriSaymaKod.asm
+                   DONGU1   0x00003a    program     static C:\Users\Shanyu\Desktop\mplab projeler\ilergeriSayma\ilerigeriSaymaKod.asm
+                  GECIKME   0x000034    program     static C:\Users\Shanyu\Desktop\mplab projeler\ilergeriSayma\ilerigeriSaymaKod.asm
+                  KONTROL   0x000017    program     static C:\Users\Shanyu\Desktop\mplab projeler\ilergeriSayma\ilerigeriSaymaKod.asm
+             PORTA_AYARLA   0x000004    program     static C:\Users\Shanyu\Desktop\mplab projeler\ilergeriSayma\ilerigeriSaymaKod.asm
+             PORTB_AYARLA   0x00000e    program     static C:\Users\Shanyu\Desktop\mplab projeler\ilergeriSayma\ilerigeriSaymaKod.asm
+             _.org_1_0021   0x000021    program     static C:\Users\Shanyu\Desktop\mplab projeler\ilergeriSayma\ilerigeriSaymaKod.asm
+             _.org_1_002C   0x00002c    program     static C:\Users\Shanyu\Desktop\mplab projeler\ilergeriSayma\ilerigeriSaymaKod.asm
+             _.org_1_003B   0x00003b    program     static C:\Users\Shanyu\Desktop\mplab projeler\ilergeriSayma\ilerigeriSaymaKod.asm
+             _.org_1_003D   0x00003d    program     static C:\Users\Shanyu\Desktop\mplab projeler\ilergeriSayma\ilerigeriSaymaKod.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+             PORTA_AYARLA   0x000004    program     static C:\Users\Shanyu\Desktop\mplab projeler\ilergeriSayma\ilerigeriSaymaKod.asm
+             PORTB_AYARLA   0x00000e    program     static C:\Users\Shanyu\Desktop\mplab projeler\ilergeriSayma\ilerigeriSaymaKod.asm
+                    BASLA   0x000015    program     static C:\Users\Shanyu\Desktop\mplab projeler\ilergeriSayma\ilerigeriSaymaKod.asm
+                  KONTROL   0x000017    program     static C:\Users\Shanyu\Desktop\mplab projeler\ilergeriSayma\ilerigeriSaymaKod.asm
+                   ARTTIR   0x00001e    program     static C:\Users\Shanyu\Desktop\mplab projeler\ilergeriSayma\ilerigeriSaymaKod.asm
+                       D1   0x000020    program     static C:\Users\Shanyu\Desktop\mplab projeler\ilergeriSayma\ilerigeriSaymaKod.asm
+             _.org_1_0021   0x000021    program     static C:\Users\Shanyu\Desktop\mplab projeler\ilergeriSayma\ilerigeriSaymaKod.asm
+                    AZALT   0x000029    program     static C:\Users\Shanyu\Desktop\mplab projeler\ilergeriSayma\ilerigeriSaymaKod.asm
+                       D2   0x00002b    program     static C:\Users\Shanyu\Desktop\mplab projeler\ilergeriSayma\ilerigeriSaymaKod.asm
+             _.org_1_002C   0x00002c    program     static C:\Users\Shanyu\Desktop\mplab projeler\ilergeriSayma\ilerigeriSaymaKod.asm
+                  GECIKME   0x000034    program     static C:\Users\Shanyu\Desktop\mplab projeler\ilergeriSayma\ilerigeriSaymaKod.asm
+                   DONGU1   0x00003a    program     static C:\Users\Shanyu\Desktop\mplab projeler\ilergeriSayma\ilerigeriSaymaKod.asm
+             _.org_1_003B   0x00003b    program     static C:\Users\Shanyu\Desktop\mplab projeler\ilergeriSayma\ilerigeriSaymaKod.asm
+             _.org_1_003D   0x00003d    program     static C:\Users\Shanyu\Desktop\mplab projeler\ilergeriSayma\ilerigeriSaymaKod.asm
+
+

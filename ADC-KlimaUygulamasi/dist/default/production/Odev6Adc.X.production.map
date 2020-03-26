@@ -1,0 +1,70 @@
+MPLINK 5.09, LINKER
+Linker Map File - Created Mon Dec  9 01:06:45 2019
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x00017c
+                   .cinit    romdata   0x0000be    program   0x000004
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x0000bf      
+            192 out of 8454 program addresses used, program memory utilization is 2%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                   AYARLA   0x000040    program     static /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm
+                BASAMAK10   0x0000b4    program     static /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm
+               BASAMAK100   0x0000ad    program     static /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm
+                    DNGU1   0x000004    program     static /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm
+                 DONUSTUR   0x000073    program     static /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm
+              DUSEN_KENAR   0x00001e    program     static /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm
+            GECIKME_196MS   0x000013    program     static /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm
+           GECIKME_200USN   0x000002    program     static /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm
+            GECIKME_50MSN   0x00000d    program     static /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm
+             GECIKME_5MSN   0x000007    program     static /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm
+                 GECIKTIR   0x000019    program     static /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm
+             KARAKTER_BOL   0x0000a9    program     static /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm
+               KOMUT_4BIT   0x000024    program     static /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm
+               KOMUT_8BIT   0x00002d    program     static /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm
+         LCD_KARAKTER_YAZ   0x000037    program     static /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm
+             _.org_0_007A   0x00007a    program     static /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm
+             _.org_0_008C   0x00008c    program     static /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm
+             _.org_0_0092   0x000092    program     static /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm
+             _.org_0_00B0   0x0000b0    program     static /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm
+             _.org_0_00B7   0x0000b7    program     static /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+           GECIKME_200USN   0x000002    program     static /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm
+                    DNGU1   0x000004    program     static /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm
+             GECIKME_5MSN   0x000007    program     static /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm
+            GECIKME_50MSN   0x00000d    program     static /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm
+            GECIKME_196MS   0x000013    program     static /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm
+                 GECIKTIR   0x000019    program     static /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm
+              DUSEN_KENAR   0x00001e    program     static /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm
+               KOMUT_4BIT   0x000024    program     static /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm
+               KOMUT_8BIT   0x00002d    program     static /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm
+         LCD_KARAKTER_YAZ   0x000037    program     static /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm
+                   AYARLA   0x000040    program     static /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm
+                 DONUSTUR   0x000073    program     static /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm
+             _.org_0_007A   0x00007a    program     static /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm
+             _.org_0_008C   0x00008c    program     static /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm
+             _.org_0_0092   0x000092    program     static /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm
+             KARAKTER_BOL   0x0000a9    program     static /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm
+               BASAMAK100   0x0000ad    program     static /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm
+             _.org_0_00B0   0x0000b0    program     static /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm
+                BASAMAK10   0x0000b4    program     static /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm
+             _.org_0_00B7   0x0000b7    program     static /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm
+
+

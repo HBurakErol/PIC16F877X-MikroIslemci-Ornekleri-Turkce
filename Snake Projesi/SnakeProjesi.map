@@ -1,0 +1,50 @@
+MPLINK 4.49, Linker
+Linker Map File - Created Sun Nov 03 19:57:14 2019
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x000106
+                   .cinit    romdata   0x000083    program   0x000004
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000084      
+            133 out of 8454 program addresses used, program memory utilization is 1%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                    BASLA   0x00005e    program     static C:\Users\Shanyu\Desktop\mplab projeler\Snake Projesi\SnakeProjesi.asm
+                       DD   0x00006b    program     static C:\Users\Shanyu\Desktop\mplab projeler\Snake Projesi\SnakeProjesi.asm
+                   DONGU1   0x000057    program     static C:\Users\Shanyu\Desktop\mplab projeler\Snake Projesi\SnakeProjesi.asm
+                     DOWN   0x000011    program     static C:\Users\Shanyu\Desktop\mplab projeler\Snake Projesi\SnakeProjesi.asm
+                  GECIKME   0x000053    program     static C:\Users\Shanyu\Desktop\mplab projeler\Snake Projesi\SnakeProjesi.asm
+              PORT_AYARLA   0x000044    program     static C:\Users\Shanyu\Desktop\mplab projeler\Snake Projesi\SnakeProjesi.asm
+                      SAG   0x000022    program     static C:\Users\Shanyu\Desktop\mplab projeler\Snake Projesi\SnakeProjesi.asm
+                      SOL   0x000033    program     static C:\Users\Shanyu\Desktop\mplab projeler\Snake Projesi\SnakeProjesi.asm
+                       UP   0x000002    program     static C:\Users\Shanyu\Desktop\mplab projeler\Snake Projesi\SnakeProjesi.asm
+             _.org_0_0058   0x000058    program     static C:\Users\Shanyu\Desktop\mplab projeler\Snake Projesi\SnakeProjesi.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                       UP   0x000002    program     static C:\Users\Shanyu\Desktop\mplab projeler\Snake Projesi\SnakeProjesi.asm
+                     DOWN   0x000011    program     static C:\Users\Shanyu\Desktop\mplab projeler\Snake Projesi\SnakeProjesi.asm
+                      SAG   0x000022    program     static C:\Users\Shanyu\Desktop\mplab projeler\Snake Projesi\SnakeProjesi.asm
+                      SOL   0x000033    program     static C:\Users\Shanyu\Desktop\mplab projeler\Snake Projesi\SnakeProjesi.asm
+              PORT_AYARLA   0x000044    program     static C:\Users\Shanyu\Desktop\mplab projeler\Snake Projesi\SnakeProjesi.asm
+                  GECIKME   0x000053    program     static C:\Users\Shanyu\Desktop\mplab projeler\Snake Projesi\SnakeProjesi.asm
+                   DONGU1   0x000057    program     static C:\Users\Shanyu\Desktop\mplab projeler\Snake Projesi\SnakeProjesi.asm
+             _.org_0_0058   0x000058    program     static C:\Users\Shanyu\Desktop\mplab projeler\Snake Projesi\SnakeProjesi.asm
+                    BASLA   0x00005e    program     static C:\Users\Shanyu\Desktop\mplab projeler\Snake Projesi\SnakeProjesi.asm
+                       DD   0x00006b    program     static C:\Users\Shanyu\Desktop\mplab projeler\Snake Projesi\SnakeProjesi.asm
+
+

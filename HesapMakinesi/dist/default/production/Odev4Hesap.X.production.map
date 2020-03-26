@@ -1,0 +1,130 @@
+MPLINK 5.09, LINKER
+Linker Map File - Created Sun Nov 17 23:28:50 2019
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x0002dc
+                   .cinit    romdata   0x00016e    program   0x000004
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x00016f      
+            368 out of 8454 program addresses used, program memory utilization is 4%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                BASAMAK10   0x000164    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+               BASAMAK100   0x00015d    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                    BOLME   0x00011f    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+              BOLME_SONUC   0x000156    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                   CARPMA   0x000117    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+             CARPMA_SONUC   0x000151    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                  CIKARMA   0x00010f    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+            CIKARMA_SONUC   0x00014d    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                   D196_D   0x000024    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                    D50_D   0x00001b    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                     D5_D   0x000012    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+            DEGER_TEMIZLE   0x0000ac    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                 DEGISTIR   0x0000b2    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                    DNGU1   0x00000b    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+              DUSEN_KENAR   0x000029    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                  ESITTIR   0x00012f    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+            GECIKME_196MS   0x000020    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+           GECIKME_200USN   0x000009    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+            GECIKME_50MSN   0x000017    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+             GECIKME_5MSN   0x00000e    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+             KARAKTER_BOL   0x00015d    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+               KOMUT_4BIT   0x00002f    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+               KOMUT_8BIT   0x000038    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                  KONTROL   0x000079    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+             KURSOR_KONUM   0x000072    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+               LCD_AYARLA   0x00004b    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+         LCD_KARAKTER_YAZ   0x000042    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+       LCD_SAYI_DEGERIMIZ   0x0000f6    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                    ONLUK   0x0000f6    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                   SATIR0   0x000088    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                   SATIR1   0x000091    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                   SATIR2   0x00009a    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                   SATIR3   0x0000a3    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                   SAYI_0   0x0000ba    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                   SAYI_1   0x0000c0    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                   SAYI_2   0x0000c6    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                   SAYI_3   0x0000cc    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                   SAYI_4   0x0000d2    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                   SAYI_5   0x0000d8    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                   SAYI_6   0x0000de    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                   SAYI_7   0x0000e4    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                   SAYI_8   0x0000ea    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                   SAYI_9   0x0000f0    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                  TEMIZLE   0x000127    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                  TOPLAMA   0x000107    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+             TOPLAM_SONUC   0x000149    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                   YUZLUK   0x0000fd    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+             _.org_0_0082   0x000082    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+             _.org_0_0160   0x000160    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+             _.org_0_0167   0x000167    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+           GECIKME_200USN   0x000009    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                    DNGU1   0x00000b    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+             GECIKME_5MSN   0x00000e    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                     D5_D   0x000012    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+            GECIKME_50MSN   0x000017    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                    D50_D   0x00001b    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+            GECIKME_196MS   0x000020    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                   D196_D   0x000024    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+              DUSEN_KENAR   0x000029    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+               KOMUT_4BIT   0x00002f    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+               KOMUT_8BIT   0x000038    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+         LCD_KARAKTER_YAZ   0x000042    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+               LCD_AYARLA   0x00004b    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+             KURSOR_KONUM   0x000072    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                  KONTROL   0x000079    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+             _.org_0_0082   0x000082    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                   SATIR0   0x000088    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                   SATIR1   0x000091    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                   SATIR2   0x00009a    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                   SATIR3   0x0000a3    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+            DEGER_TEMIZLE   0x0000ac    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                 DEGISTIR   0x0000b2    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                   SAYI_0   0x0000ba    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                   SAYI_1   0x0000c0    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                   SAYI_2   0x0000c6    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                   SAYI_3   0x0000cc    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                   SAYI_4   0x0000d2    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                   SAYI_5   0x0000d8    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                   SAYI_6   0x0000de    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                   SAYI_7   0x0000e4    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                   SAYI_8   0x0000ea    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                   SAYI_9   0x0000f0    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                    ONLUK   0x0000f6    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+       LCD_SAYI_DEGERIMIZ   0x0000f6    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                   YUZLUK   0x0000fd    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                  TOPLAMA   0x000107    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                  CIKARMA   0x00010f    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                   CARPMA   0x000117    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                    BOLME   0x00011f    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                  TEMIZLE   0x000127    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                  ESITTIR   0x00012f    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+             TOPLAM_SONUC   0x000149    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+            CIKARMA_SONUC   0x00014d    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+             CARPMA_SONUC   0x000151    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+              BOLME_SONUC   0x000156    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+               BASAMAK100   0x00015d    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+             KARAKTER_BOL   0x00015d    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+             _.org_0_0160   0x000160    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+                BASAMAK10   0x000164    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+             _.org_0_0167   0x000167    program     static /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm
+
+

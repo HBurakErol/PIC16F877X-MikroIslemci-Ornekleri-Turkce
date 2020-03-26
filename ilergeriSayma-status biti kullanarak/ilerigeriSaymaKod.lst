@@ -1,0 +1,589 @@
+MPASM  5.51             ILERIGERISAYMAKOD.ASM   11-4-2019  1:25:07         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 #include        <p16f877A.inc>
+                      00001         LIST
+                      00002 
+                      00003 ;==========================================================================
+                      00004 ;  MPASM PIC16F877A processor include
+                      00005 ; 
+                      00006 ;  (c) Copyright 1999-2013 Microchip Technology, All rights reserved
+                      00007 ;==========================================================================
+                      00008 
+                      00566         LIST
+Warning[205]: Found directive in column 1. (list)
+                      00002 list            p=16f877A
+  00000020            00003 GECIKME1        EQU     0x20    ;GEC?KME 1. DONGU
+  00000021            00004 GECIKME2        EQU     0x21    ;GECIKME 2. DONGU
+  00000022            00005 GECIKME3        EQU     0x22    ;GECIKME 3.DONGU
+Warning[205]: Found directive in column 1. (ORG)
+                      00006 ORG 0X00
+Warning[203]: Found opcode in column 1. (nop)
+0000   0000           00007 nop
+Warning[203]: Found opcode in column 1. (GOTO)
+0001   2???           00008 GOTO BASLA
+                      00009 
+Warning[205]: Found directive in column 1. (ORG)
+                      00010 ORG 0X04
+                      00011 
+0004                  00012 PORTA_AYARLA:
+Warning[205]: Found directive in column 1. (BANKSEL)
+0004   1683 1303      00013 BANKSEL TRISA
+Warning[203]: Found opcode in column 1. (MOVLW)
+0006   3006           00014 MOVLW 0X06
+Warning[203]: Found opcode in column 1. (MOVWF)
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0007   009F           00015 MOVWF ADCON1
+Warning[203]: Found opcode in column 1. (MOVLW)
+0008   3030           00016 MOVLW b'00110000'
+Warning[203]: Found opcode in column 1. (MOVWF)
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0009   0085           00017 MOVWF TRISA
+Warning[205]: Found directive in column 1. (BANKSEL)
+000A   1283 1303      00018 BANKSEL PORTA
+Warning[203]: Found opcode in column 1. (CLRF)
+000C   0185           00019 CLRF    PORTA
+Warning[203]: Found opcode in column 1. (RETURN)
+000D   0008           00020 RETURN
+                      00021 
+000E                  00022 PORTB_AYARLA:
+Warning[205]: Found directive in column 1. (BANKSEL)
+000E   1683 1303      00023 BANKSEL TRISB
+Warning[203]: Found opcode in column 1. (CLRF)
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0010   0186           00024 CLRF TRISB
+Warning[205]: Found directive in column 1. (BANKSEL)
+0011   1283 1303      00025 BANKSEL PORTB
+MPASM  5.51             ILERIGERISAYMAKOD.ASM   11-4-2019  1:25:07         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+Warning[203]: Found opcode in column 1. (CLRF)
+0013   0186           00026 CLRF PORTB
+Warning[203]: Found opcode in column 1. (RETURN)
+0014   0008           00027 RETURN
+                      00028 
+0015                  00029 BASLA:
+Warning[203]: Found opcode in column 1. (call)
+0015   2???           00030 call PORTA_AYARLA
+Warning[203]: Found opcode in column 1. (call)
+0016   2???           00031 call PORTB_AYARLA
+                      00032 
+0017                  00033 KONTROL:
+Warning[203]: Found opcode in column 1. (BTFSC)
+0017   1A05           00034 BTFSC PORTA,4
+Warning[203]: Found opcode in column 1. (GOTO)
+0018   2???           00035 GOTO AZALT
+Warning[203]: Found opcode in column 1. (NOP)
+0019   0000           00036 NOP
+Warning[203]: Found opcode in column 1. (BTFSC)
+001A   1A85           00037 BTFSC PORTA,5
+Warning[203]: Found opcode in column 1. (GOTO)
+001B   2???           00038 GOTO ARTTIR
+Warning[203]: Found opcode in column 1. (NOP)
+001C   0000           00039 NOP
+Warning[203]: Found opcode in column 1. (GOTO)
+001D   2???           00040 GOTO KONTROL
+                      00041 
+001E                  00042 ARTTIR:
+Warning[205]: Found directive in column 1. (BANKSEL)
+001E   1283 1303      00043 BANKSEL PORTB
+0020                  00044 D1
+Warning[203]: Found opcode in column 1. (BTFSS)
+0020   1E05           00045 BTFSS PORTA, 4
+Warning[203]: Found opcode in column 1. (GOTO)
+0021   2???           00046 GOTO    $+2
+Warning[203]: Found opcode in column 1. (GOTO)
+0022   2???           00047 GOTO AZALT
+Warning[203]: Found opcode in column 1. (CALL)
+0023   2???           00048 CALL GECIKME
+Warning[203]: Found opcode in column 1. (INCF)
+Message[305]: Using default destination of 1 (file).
+0024   0A86           00049 INCF PORTB
+Warning[203]: Found opcode in column 1. (BTFSS)
+0025   1D03           00050 BTFSS STATUS,2
+Warning[203]: Found opcode in column 1. (GOTO)
+0026   2???           00051 GOTO D1
+Warning[203]: Found opcode in column 1. (INCF)
+Message[305]: Using default destination of 1 (file).
+0027   0A85           00052 INCF PORTA
+Warning[203]: Found opcode in column 1. (GOTO)
+0028   2???           00053 GOTO D1
+                      00054 
+                      00055 
+MPASM  5.51             ILERIGERISAYMAKOD.ASM   11-4-2019  1:25:07         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0029                  00056 AZALT:
+Warning[205]: Found directive in column 1. (BANKSEL)
+0029   1283 1303      00057 BANKSEL PORTB
+002B                  00058 D2
+Warning[203]: Found opcode in column 1. (BTFSS)
+002B   1E85           00059 BTFSS PORTA, 5
+Warning[203]: Found opcode in column 1. (GOTO)
+002C   2???           00060 GOTO    $+2
+Warning[203]: Found opcode in column 1. (GOTO)
+002D   2???           00061 GOTO ARTTIR
+Warning[203]: Found opcode in column 1. (CALL)
+002E   2???           00062 CALL GECIKME
+Warning[203]: Found opcode in column 1. (DECF)
+Message[305]: Using default destination of 1 (file).
+002F   0386           00063 DECF PORTB
+Warning[203]: Found opcode in column 1. (BTFSS)
+0030   1D03           00064 BTFSS STATUS,2
+Warning[203]: Found opcode in column 1. (GOTO)
+0031   2???           00065 GOTO D2
+Warning[203]: Found opcode in column 1. (DECF)
+Message[305]: Using default destination of 1 (file).
+0032   0385           00066 DECF PORTA
+Warning[203]: Found opcode in column 1. (GOTO)
+0033   2???           00067 GOTO D2
+                      00068 
+                      00069 
+                      00070 
+                      00071 
+0034                  00072 GECIKME:                                ; (herbir komut 4mhz de 1mikrosn) = 1 sn GEC?KME (yakla??k)
+0034   3008           00073         MOVLW   0x08
+0035   00A0           00074         MOVWF   GECIKME1        
+                      00075         
+0036   302F           00076         MOVLW   0x2F
+0037   00A1           00077         MOVWF   GECIKME2
+0038   3003           00078         MOVLW   0x03
+0039   00A2           00079         MOVWF   GECIKME3
+003A                  00080 DONGU1
+003A   0BA0           00081         DECFSZ  GECIKME1,1
+003B   2???           00082         GOTO    $+2
+003C   0BA1           00083         DECFSZ  GECIKME2,1
+003D   2???           00084         GOTO    $+2
+003E   0BA2           00085         DECFSZ  GECIKME3,1
+003F   2???           00086         GOTO    DONGU1
+                      00087         
+0040   0000           00088         NOP
+0041   0000           00089         NOP
+0042   0000           00090         NOP     
+0043   0008           00091         RETURN
+                      00092 
+                      00093 
+                      00094 
+Warning[205]: Found directive in column 1. (end)
+                      00095 end
+MPASM  5.51             ILERIGERISAYMAKOD.ASM   11-4-2019  1:25:07         PAGE  4
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+ACKDT                             00000005
+ACKEN                             00000004
+ACKSTAT                           00000006
+ADCON0                            0000001F
+ADCON1                            0000009F
+ADCS0                             00000006
+ADCS1                             00000007
+ADCS2                             00000006
+ADDEN                             00000003
+ADFM                              00000007
+ADIE                              00000006
+ADIF                              00000006
+ADON                              00000000
+ADRESH                            0000001E
+ADRESL                            0000009E
+ARTTIR                            0000001E
+AZALT                             00000029
+BASLA                             00000015
+BCLIE                             00000003
+BCLIF                             00000003
+BF                                00000000
+BRGH                              00000002
+C                                 00000000
+C1INV                             00000004
+C1OUT                             00000006
+C2INV                             00000005
+C2OUT                             00000007
+CCP1CON                           00000017
+CCP1IE                            00000002
+CCP1IF                            00000002
+CCP1M0                            00000000
+CCP1M1                            00000001
+CCP1M2                            00000002
+CCP1M3                            00000003
+CCP1X                             00000005
+CCP1Y                             00000004
+CCP2CON                           0000001D
+CCP2IE                            00000000
+CCP2IF                            00000000
+CCP2M0                            00000000
+CCP2M1                            00000001
+CCP2M2                            00000002
+CCP2M3                            00000003
+CCP2X                             00000005
+CCP2Y                             00000004
+CCPR1                             00000015
+CCPR1H                            00000016
+CCPR1L                            00000015
+CCPR2                             0000001B
+CCPR2H                            0000001C
+CCPR2L                            0000001B
+CHS0                              00000003
+CHS1                              00000004
+MPASM  5.51             ILERIGERISAYMAKOD.ASM   11-4-2019  1:25:07         PAGE  5
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+CHS2                              00000005
+CIS                               00000003
+CKE                               00000006
+CKP                               00000004
+CM0                               00000000
+CM1                               00000001
+CM2                               00000002
+CMCON                             0000009C
+CMIE                              00000006
+CMIF                              00000006
+CREN                              00000004
+CSRC                              00000007
+CVR0                              00000000
+CVR1                              00000001
+CVR2                              00000002
+CVR3                              00000003
+CVRCON                            0000009D
+CVREN                             00000007
+CVROE                             00000006
+CVRR                              00000005
+D                                 00000005
+D1                                00000020
+D2                                0000002B
+DATA_ADDRESS                      00000005
+DC                                00000001
+DONGU1                            0000003A
+D_A                               00000005
+D_NOT_A                           00000005
+EEADR                             0000010D
+EEADRH                            0000010F
+EECON1                            0000018C
+EECON2                            0000018D
+EEDATA                            0000010C
+EEDATH                            0000010E
+EEIE                              00000004
+EEIF                              00000004
+EEPGD                             00000007
+F                                 00000001
+FERR                              00000002
+FSR                               00000004
+GCEN                              00000007
+GECIKME                           00000034
+GECIKME1                          00000020
+GECIKME2                          00000021
+GECIKME3                          00000022
+GIE                               00000007
+GO                                00000002
+GO_DONE                           00000002
+GO_NOT_DONE                       00000002
+I2C_DATA                          00000005
+I2C_READ                          00000002
+I2C_START                         00000003
+I2C_STOP                          00000004
+MPASM  5.51             ILERIGERISAYMAKOD.ASM   11-4-2019  1:25:07         PAGE  6
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+IBF                               00000007
+IBOV                              00000005
+INDF                              00000000
+INTCON                            0000000B
+INTE                              00000004
+INTEDG                            00000006
+INTF                              00000001
+IRP                               00000007
+KONTROL                           00000017
+NOT_A                             00000005
+NOT_ADDRESS                       00000005
+NOT_BO                            00000000
+NOT_BOR                           00000000
+NOT_DONE                          00000002
+NOT_PD                            00000003
+NOT_POR                           00000001
+NOT_RBPU                          00000007
+NOT_RC8                           00000006
+NOT_T1SYNC                        00000002
+NOT_TO                            00000004
+NOT_TX8                           00000006
+NOT_W                             00000002
+NOT_WRITE                         00000002
+OBF                               00000006
+OERR                              00000001
+OPTION_REG                        00000081
+P                                 00000004
+PCFG0                             00000000
+PCFG1                             00000001
+PCFG2                             00000002
+PCFG3                             00000003
+PCL                               00000002
+PCLATH                            0000000A
+PCON                              0000008E
+PEIE                              00000006
+PEN                               00000002
+PIE1                              0000008C
+PIE2                              0000008D
+PIR1                              0000000C
+PIR2                              0000000D
+PORTA                             00000005
+PORTA_AYARLA                      00000004
+PORTB                             00000006
+PORTB_AYARLA                      0000000E
+PORTC                             00000007
+PORTD                             00000008
+PORTE                             00000009
+PR2                               00000092
+PS0                               00000000
+PS1                               00000001
+PS2                               00000002
+PSA                               00000003
+PSPIE                             00000007
+MPASM  5.51             ILERIGERISAYMAKOD.ASM   11-4-2019  1:25:07         PAGE  7
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+PSPIF                             00000007
+PSPMODE                           00000004
+R                                 00000002
+RA0                               00000000
+RA1                               00000001
+RA2                               00000002
+RA3                               00000003
+RA4                               00000004
+RA5                               00000005
+RB0                               00000000
+RB1                               00000001
+RB2                               00000002
+RB3                               00000003
+RB4                               00000004
+RB5                               00000005
+RB6                               00000006
+RB7                               00000007
+RBIE                              00000003
+RBIF                              00000000
+RC0                               00000000
+RC1                               00000001
+RC2                               00000002
+RC3                               00000003
+RC4                               00000004
+RC5                               00000005
+RC6                               00000006
+RC7                               00000007
+RC8_9                             00000006
+RC9                               00000006
+RCD8                              00000000
+RCEN                              00000003
+RCIE                              00000005
+RCIF                              00000005
+RCREG                             0000001A
+RCSTA                             00000018
+RD                                00000000
+RD0                               00000000
+RD1                               00000001
+RD2                               00000002
+RD3                               00000003
+RD4                               00000004
+RD5                               00000005
+RD6                               00000006
+RD7                               00000007
+RE0                               00000000
+RE1                               00000001
+RE2                               00000002
+READ_WRITE                        00000002
+RP0                               00000005
+RP1                               00000006
+RSEN                              00000001
+RX9                               00000006
+RX9D                              00000000
+MPASM  5.51             ILERIGERISAYMAKOD.ASM   11-4-2019  1:25:07         PAGE  8
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+R_NOT_W                           00000002
+R_W                               00000002
+S                                 00000003
+SEN                               00000000
+SMP                               00000007
+SPBRG                             00000099
+SPEN                              00000007
+SREN                              00000005
+SSPADD                            00000093
+SSPBUF                            00000013
+SSPCON                            00000014
+SSPCON2                           00000091
+SSPEN                             00000005
+SSPIE                             00000003
+SSPIF                             00000003
+SSPM0                             00000000
+SSPM1                             00000001
+SSPM2                             00000002
+SSPM3                             00000003
+SSPOV                             00000006
+SSPSTAT                           00000094
+STATUS                            00000003
+SYNC                              00000004
+T0CS                              00000005
+T0IE                              00000005
+T0IF                              00000002
+T0SE                              00000004
+T1CKPS0                           00000004
+T1CKPS1                           00000005
+T1CON                             00000010
+T1INSYNC                          00000002
+T1OSCEN                           00000003
+T1SYNC                            00000002
+T2CKPS0                           00000000
+T2CKPS1                           00000001
+T2CON                             00000012
+TMR0                              00000001
+TMR0IE                            00000005
+TMR0IF                            00000002
+TMR1                              0000000E
+TMR1CS                            00000001
+TMR1H                             0000000F
+TMR1IE                            00000000
+TMR1IF                            00000000
+TMR1L                             0000000E
+TMR1ON                            00000000
+TMR2                              00000011
+TMR2IE                            00000001
+TMR2IF                            00000001
+TMR2ON                            00000002
+TOUTPS0                           00000003
+TOUTPS1                           00000004
+TOUTPS2                           00000005
+MPASM  5.51             ILERIGERISAYMAKOD.ASM   11-4-2019  1:25:07         PAGE  9
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+TOUTPS3                           00000006
+TRISA                             00000085
+TRISA0                            00000000
+TRISA1                            00000001
+TRISA2                            00000002
+TRISA3                            00000003
+TRISA4                            00000004
+TRISA5                            00000005
+TRISB                             00000086
+TRISB0                            00000000
+TRISB1                            00000001
+TRISB2                            00000002
+TRISB3                            00000003
+TRISB4                            00000004
+TRISB5                            00000005
+TRISB6                            00000006
+TRISB7                            00000007
+TRISC                             00000087
+TRISC0                            00000000
+TRISC1                            00000001
+TRISC2                            00000002
+TRISC3                            00000003
+TRISC4                            00000004
+TRISC5                            00000005
+TRISC6                            00000006
+TRISC7                            00000007
+TRISD                             00000088
+TRISD0                            00000000
+TRISD1                            00000001
+TRISD2                            00000002
+TRISD3                            00000003
+TRISD4                            00000004
+TRISD5                            00000005
+TRISD6                            00000006
+TRISD7                            00000007
+TRISE                             00000089
+TRISE0                            00000000
+TRISE1                            00000001
+TRISE2                            00000002
+TRMT                              00000001
+TX8_9                             00000006
+TX9                               00000006
+TX9D                              00000000
+TXD8                              00000000
+TXEN                              00000005
+TXIE                              00000004
+TXIF                              00000004
+TXREG                             00000019
+TXSTA                             00000098
+UA                                00000001
+W                                 00000000
+WCOL                              00000007
+WR                                00000001
+MPASM  5.51             ILERIGERISAYMAKOD.ASM   11-4-2019  1:25:07         PAGE 10
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+WREN                              00000002
+WRERR                             00000003
+Z                                 00000002
+_.org_1_0021                      00000021
+_.org_1_002C                      0000002C
+_.org_1_003B                      0000003B
+_.org_1_003D                      0000003D
+_BODEN_OFF                        00003FBF
+_BODEN_ON                         00003FFF
+_BOREN_OFF                        00003FBF
+_BOREN_ON                         00003FFF
+_CONFIG                           00002007
+_CPD_OFF                          00003FFF
+_CPD_ON                           00003EFF
+_CP_ALL                           00001FFF
+_CP_OFF                           00003FFF
+_CP_ON                            00001FFF
+_DEBUG_OFF                        00003FFF
+_DEBUG_ON                         000037FF
+_DEVID1                           00002006
+_FOSC_EXTRC                       00003FFF
+_FOSC_HS                          00003FFE
+_FOSC_LP                          00003FFC
+_FOSC_XT                          00003FFD
+_HS_OSC                           00003FFE
+_IDLOC0                           00002000
+_IDLOC1                           00002001
+_IDLOC2                           00002002
+_IDLOC3                           00002003
+_LP_OSC                           00003FFC
+_LVP_OFF                          00003F7F
+_LVP_ON                           00003FFF
+_PWRTE_OFF                        00003FFF
+_PWRTE_ON                         00003FF7
+_RC_OSC                           00003FFF
+_WDTE_OFF                         00003FFB
+_WDTE_ON                          00003FFF
+_WDT_OFF                          00003FFB
+_WDT_ON                           00003FFF
+_WRT_1FOURTH                      00003BFF
+_WRT_256                          00003DFF
+_WRT_HALF                         000039FF
+_WRT_OFF                          00003FFF
+_XT_OSC                           00003FFD
+__16F877A                         00000001
+__DEBUG                           1
+
+Errors   :     0
+Warnings :    48 reported,     0 suppressed
+Messages :     7 reported,     0 suppressed
+
+

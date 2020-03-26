@@ -1,0 +1,1110 @@
+MPASM 5.84  /USERS/NURULLAH/MPLABXPROJECTS/O   11-18-2019  12:56:05         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 #INCLUDE  <P16F877A.INC>
+                      00001         LIST
+                      00002 
+                      00003 ;==========================================================================
+                      00004 ; Build date : Mar 17 2019
+                      00005 ;  MPASM PIC16F877A processor include
+                      00006 ; 
+                      00007 ;  (c) Copyright 1999-2019 Microchip Technology, All rights reserved
+                      00008 ;==========================================================================
+                      00009 
+                      00567         LIST
+Warning[205]: Found directive in column 1. (LIST)
+                      00002 LIST            P=16F877A
+                      00003 
+Warning[205]: Found directive in column 1. (ORG)
+                      00004 ORG             0X00
+  00000020            00005 GECIKME1        EQU     0x20    ; GEC?KME 1. DONGU
+  00000021            00006 GECIKME2        EQU     0x21    ; GECIKME 2. DONGU
+  00000022            00007 GECIKME3        EQU     0x22    ; GECIKME 3.DONGU
+                      00008 
+  00000023            00009 DUSUK_4         EQU     0x23    ; 4 BITLIK KOMUT GONDERIMINDE KULLANILACAK
+  00000024            00010 VERI            EQU     0x24    ; 8 BITLIK LCD VERISI TUTULACAK
+  00000025            00011 SATIR_KONUM     EQU     0x25    ; LCD EKRANIN GIDILECEK SATIR BILGISI
+  00000026            00012 SUTUN_KONUM     EQU     0x26    ; LCD EKRANIN GIDILECEK SUTUN BILGISI
+                      00013 
+  00000027            00014 ILK_DEGER       EQU     0X27
+  00000028            00015 SON_DEGER       EQU     0X28    
+  00000029            00016 ISLEM_REG       EQU     0X29
+  0000002A            00017 BIRLER          EQU     0X2A
+  0000002B            00018 ONLAR           EQU     0X2B
+  0000002C            00019 YUZLER          EQU     0X2C
+  0000002D            00020 ARA             EQU     0X2D
+  0000002E            00021 SONUC           EQU     0X2E
+                      00022                 
+Warning[203]: Found opcode in column 1. (CALL)
+0000   2???           00023 CALL    LCD_AYARLA
+Warning[203]: Found opcode in column 1. (GOTO)
+0001   2???           00024 GOTO    KONTROL
+                      00025 
+0002                  00026 GECIKME_200USN                          
+0002   30C8           00027         MOVLW   0xC8
+0003   00A0           00028         MOVWF   GECIKME1
+Warning[207]: Found label after column 1. (DNGU1)
+0004                  00029         DNGU1
+0004   0BA0           00030         DECFSZ  GECIKME1,1 
+0005   2???           00031         GOTO    DNGU1           
+0006   0008           00032         RETURN
+                      00033         
+0007                  00034 GECIKME_5MSN
+0007   30E7           00035         movlw   0xE7
+0008   00A0           00036         movwf   GECIKME1
+0009   3004           00037         movlw   0x04
+000A   00A1           00038         movwf   GECIKME2
+MPASM 5.84  /USERS/NURULLAH/MPLABXPROJECTS/O   11-18-2019  12:56:05         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000B   2???           00039         CALL    GECIKTIR
+000C   0008           00040         RETURN
+                      00041         
+000D                  00042 GECIKME_50MSN
+000D   300F           00043         movlw   0x0F
+000E   00A0           00044         movwf   GECIKME1
+000F   3028           00045         movlw   0x28
+0010   00A1           00046         movwf   GECIKME2
+0011   2???           00047         CALL    GECIKTIR
+0012   0008           00048         RETURN
+                      00049 
+0013                  00050 GECIKME_196MS
+0013   30FF           00051         movlw   0xFF
+0014   00A0           00052         movwf   GECIKME1
+0015   30FF           00053         movlw   0xFF
+0016   00A1           00054         movwf   GECIKME2
+0017   2???           00055         CALL    GECIKTIR
+0018   0008           00056         RETURN
+0019                  00057 GECIKTIR
+0019   0BA0           00058         decfsz  GECIKME1, f
+001A   2???           00059         goto    GECIKTIR
+001B   0BA1           00060         decfsz  GECIKME2, f
+001C   2???           00061         goto    GECIKTIR
+001D   0008           00062         RETURN
+                      00063 ;******************************************************************************************************
+                      00064         
+001E                  00065 DUSEN_KENAR
+001E   1283 1303      00066         BANKSEL PORTB
+0020   1686           00067         BSF     PORTB,5         ;E UCUNU ONCE 1 YAP
+0021   2???           00068         CALL    GECIKME_200USN  ;ASLINDA BU KADAR UZUN OLMAK ZORUNDA DEGIL
+0022   1286           00069         BCF     PORTB,5         ; E UCUNU TEKRAR 0 YAP
+0023   0008           00070         RETURN
+                      00071         
+Warning[207]: Found label after column 1. (KOMUT_4BIT)
+0024                  00072         KOMUT_4BIT
+                      00073         ; BU FONKSIYON 4 BITLIK KOMUT GONDERME ICIN KULLANILIR
+                      00074         ;BURADA DIKKAT EDILMESI GEREKEN PORTB NIN AYAR BITLERINI DE ICEREN 4-7 NOLU BITLERININ DURUMLARI
+                            NIN BOZULMAMASI
+                      00075         ;GONDERILECEK 4 BIT BU FONKSIYON CAGRILMADAN    W YA YUKLENMELI. BUNLARI BIT BIT GONDERMEKTENSE 
+                            MEVCUT PORTB NIN
+                      00076         ;DEGERLI 4 BITI ILE GELEN W VERISININ 4 BITINI BIRLESTIR
+                      00077         
+0024   390F           00078         ANDLW   0x0F    ; W 'DAKI DEGERIN SADECE ILK DORT BITINI AL SAKLA
+0025   00A3           00079         MOVWF   DUSUK_4
+                      00080         
+0026   0806           00081         MOVF    PORTB,W ; PORTB NIN EN DEGERLI 4 BITINI ALMAK ICIN W 'YA GETIR
+0027   39F0           00082         ANDLW   0xF0    ; SADECE EN DEGERLI 4 BITI
+                      00083         
+0028   0423           00084         IORWF   DUSUK_4,W   ; ILK DORT BITI TUTAN DEGISKEN ILE PORTB NIN SON 4 UNU VEYA ISLEMI ILE BIRLE
+                            STIR
+                      00085         
+0029   0086           00086         MOVWF   PORTB   ;BIRLESMIS VERIYI LCD YE GONDER. BOYLECE MEVCUT PORTB DURUMU KORUNMUS OLDU
+                      00087         
+MPASM 5.84  /USERS/NURULLAH/MPLABXPROJECTS/O   11-18-2019  12:56:05         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+002A   2???           00088         CALL    DUSEN_KENAR ; KOMUT GONDERMEK ICIN E UCUNAN DUSEN KENAR GONDER
+002B   2???           00089         CALL    GECIKME_200USN
+002C   0008           00090         RETURN
+                      00091         
+Warning[207]: Found label after column 1. (KOMUT_8BIT)
+002D                  00092         KOMUT_8BIT
+                      00093         ; BU FONKSIYON 8 BITLIK KOMUT GONDERMEK ICIN KULLANILACAK. CALISMASINDA YUKARIDAKI KOMUT_4 FONKS
+                            IYONUNDAN
+                      00094         ; FAYDALANACAK. BU FONKSIYON CAGRILDIGINDA GONDERILECEK VERI W 'YA YUKLENMIS OLMALI
+                      00095         ; GONDERILECEK KOMUTUN ONCE EN DEGERLIKLI 4 BITI SONRA EN DEGERLIKSIZ 4 BITI GONDERILECEK
+                      00096         ; ONCE EN DEGERLI 4 BITINI GONDERMEK ICIN SWAPF KOMUTU ILE SON 4 BIT BASA GETIRILIR
+                      00097         
+002D   00A4           00098         MOVWF   VERI    ; ONCE GONDERILECEK VERIYI SAKLA
+002E   0E24           00099         SWAPF   VERI,W  ; GONDERILECEK VERININ ILK DOR VE SON DORT BITINI YER DEGISTIR VE W YA AT
+                      00100         
+002F   1283 1303      00101         BANKSEL PORTB
+0031   1206           00102         BCF     PORTB,4 ; RS UCUNU 0 A CEK VE KOMUT GONDERECEGINI SOYLE
+                      00103         
+0032   2???           00104         CALL    KOMUT_4BIT  ; BU EN DEGERLIKLI 4 BITI YOLLA
+                      00105         
+0033   0824           00106         MOVF    VERI,W      ; SIMDI EN DEGERLIKSIZ 4 U GONDER ( VERI DEGISKENI NORMAL DURUMU TUTUYORDU)
+0034   1206           00107         BCF     PORTB,4 ; RS UCUNU 0 A CEK VE KOMUT GONDERECEGINI SOYLE
+0035   2???           00108         CALL    KOMUT_4BIT
+                      00109         
+0036   0008           00110         RETURN
+0037                  00111 LCD_KARAKTER_YAZ
+0037   00A4           00112         MOVWF   VERI        ; GELEN VERI ICIN SWAP ISLEMI YAPILACAGINDAN KORU
+0038   0E24           00113         SWAPF   VERI,W      ; EN DEGERLIKLI BITLER ICIN SWAP YAP
+0039   1283 1303      00114         BANKSEL PORTB
+003B   1606           00115         BSF     PORTB,4     ; KARAKTER YAZMA ICIN RS=1
+003C   2???           00116         CALL    KOMUT_4BIT  ; 4 BIT MODUNDA KARAKTERI GONDER
+003D   0824           00117         MOVF    VERI,W      ; SIMDI NORMAL DUSUK DEGERLIKLI BITLERI GONDER
+003E   2???           00118         CALL    KOMUT_4BIT
+003F   0008           00119         RETURN
+                      00120         
+                      00121 ;****************************************************************************************************
+0040                  00122 LCD_AYARLA
+0040   1683 1303      00123         BANKSEL TRISD
+0042   30F0           00124         MOVLW   0XF0
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0043   0088           00125         MOVWF   TRISD
+0044   1283 1303      00126         BANKSEL PORTB
+                      00127 
+                      00128 
+0046   1683 1303      00129         BANKSEL TRISB
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0048   0186           00130         CLRF    TRISB
+0049   300F           00131         MOVLW   0X0F
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+004A   0088           00132         MOVWF   TRISD
+                      00133 
+004B   1283 1303      00134         BANKSEL PORTB
+004D   1608           00135         BSF     PORTD,4
+MPASM 5.84  /USERS/NURULLAH/MPLABXPROJECTS/O   11-18-2019  12:56:05         PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+004E   2???           00136         CALL    GECIKME_50MSN   ;LCD ILK ACILIS GECIKMESI
+                      00137         
+004F   1206           00138         BCF     PORTB,4         ;RS UCUNU 0 YAPARAK LCD YE KOMUT GONDERECEGINI SOYLE
+                      00139         
+0050   3003           00140         MOVLW   0x03
+0051   2???           00141         CALL    KOMUT_4BIT
+0052   2???           00142         CALL    GECIKME_5MSN
+                      00143         
+0053   2???           00144         CALL    DUSEN_KENAR
+0054   2???           00145         CALL    GECIKME_200USN
+0055   2???           00146         CALL    DUSEN_KENAR
+0056   2???           00147         CALL    GECIKME_200USN
+                      00148         
+0057   1206           00149         BCF     PORTB,4
+0058   3002           00150         MOVLW   0x02
+0059   2???           00151         CALL    KOMUT_4BIT
+005A   2???           00152         CALL    GECIKME_200USN
+                      00153         
+005B   3028           00154         MOVLW   0x28
+005C   2???           00155         CALL    KOMUT_8BIT
+                      00156         
+005D   3010           00157         MOVLW   0x10            ; EKRAN AKTIF, IMLEC YAN SON
+005E   2???           00158         CALL    KOMUT_8BIT
+                      00159         
+005F   3001           00160         MOVLW   0x01
+0060   2???           00161         CALL    KOMUT_8BIT
+                      00162         
+0061   2???           00163         CALL    GECIKME_5MSN
+                      00164         
+0062   3006           00165         MOVLW   0x06
+0063   2???           00166         CALL    KOMUT_8BIT
+                      00167         
+0064   300D           00168         MOVLW   0x0D
+0065   2???           00169         CALL    KOMUT_8BIT
+                      00170         
+0066   0008           00171         RETURN
+                      00172 ;*******************************************************************************************************
+                      00173         
+0067                  00174 KURSOR_KONUM
+0067   3080           00175         MOVLW   0x80                ; EKRANIN ILK SATIR BIRINCI SUTUN NOKTA KOORDINATI 0x80 DIR
+0068   08A5           00176         MOVF    SATIR_KONUM,1       ; KENDI UZERINE KOPYALA, EGER 0 ISE SIFIRINCI SATIRDA KAL
+0069   1D03           00177         BTFSS   STATUS,Z            ; EGER DEGILSE IKINCI SATIR BASLANGIC ADRESI 0x80 DEN BASLA
+006A   30C0           00178         MOVLW   0xC0
+006B   0726           00179         ADDWF   SUTUN_KONUM,W       ; SATIR BELLI OLDU SUTUN SAYISINI EKLE VE KONUMA GIT
+006C   2???           00180         CALL    KOMUT_8BIT
+006D   0008           00181         RETURN
+                      00182 
+                      00183 ;*******************************************************************************************************
+                      00184         
+Warning[207]: Found label after column 1. (KONTROL)
+006E                  00185         KONTROL
+006E   1808           00186         BTFSC           PORTD,0
+006F   2???           00187         CALL            SATIR0
+MPASM 5.84  /USERS/NURULLAH/MPLABXPROJECTS/O   11-18-2019  12:56:05         PAGE  5
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0070   1888           00188         BTFSC           PORTD,1
+0071   2???           00189         CALL            SATIR1
+0072   1908           00190         BTFSC           PORTD,2
+0073   2???           00191         CALL            SATIR2
+0074   1988           00192         BTFSC           PORTD,3
+0075   2???           00193         CALL            SATIR3
+                      00194         
+0076   1F88           00195         BTFSS           PORTD,7
+0077   2???           00196         GOTO            $+4
+0078   3010           00197         MOVLW           B'00010000'
+0079   0088           00198         MOVWF           PORTD
+007A   2???           00199         GOTO            KONTROL
+                      00200         
+Message[305]: Using default destination of 1 (file).
+007B   0D88           00201         RLF             PORTD
+007C   2???           00202         GOTO            KONTROL
+                      00203         
+Warning[207]: Found label after column 1. (SATIR0)
+007D                  00204         SATIR0
+007D   1A08           00205         BTFSC           PORTD,4
+007E   2???           00206         CALL            SAYI_7
+007F   1A88           00207         BTFSC           PORTD,5
+0080   2???           00208         CALL            SAYI_8
+0081   1B08           00209         BTFSC           PORTD,6
+0082   2???           00210         CALL            SAYI_9
+0083   1B88           00211         BTFSC           PORTD,7
+0084   2???           00212         CALL            BOLME
+0085   0008           00213         RETURN
+                      00214         
+Warning[207]: Found label after column 1. (SATIR1)
+0086                  00215         SATIR1
+0086   1A08           00216         BTFSC           PORTD,4
+0087   2???           00217         CALL            SAYI_4
+0088   1A88           00218         BTFSC           PORTD,5
+0089   2???           00219         CALL            SAYI_5
+008A   1B08           00220         BTFSC           PORTD,6
+008B   2???           00221         CALL            SAYI_6
+008C   1B88           00222         BTFSC           PORTD,7
+008D   2???           00223         CALL            CARPMA
+008E   0008           00224         RETURN
+                      00225         
+Warning[207]: Found label after column 1. (SATIR2)
+008F                  00226         SATIR2
+008F   1A08           00227         BTFSC           PORTD,4
+0090   2???           00228         CALL            SAYI_1
+0091   1A88           00229         BTFSC           PORTD,5
+0092   2???           00230         CALL            SAYI_2
+0093   1B08           00231         BTFSC           PORTD,6
+0094   2???           00232         CALL            SAYI_3
+0095   1B88           00233         BTFSC           PORTD,7
+0096   2???           00234         CALL            CIKARMA
+0097   0008           00235         RETURN
+                      00236         
+MPASM 5.84  /USERS/NURULLAH/MPLABXPROJECTS/O   11-18-2019  12:56:05         PAGE  6
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+Warning[207]: Found label after column 1. (SATIR3)
+0098                  00237         SATIR3
+0098   1A08           00238         BTFSC           PORTD,4
+0099   2???           00239         CALL            TEMIZLE
+009A   1A88           00240         BTFSC           PORTD,5
+009B   2???           00241         CALL            SAYI_0
+009C   1B08           00242         BTFSC           PORTD,6
+009D   2???           00243         CALL            ESITTIR
+009E   1B88           00244         BTFSC           PORTD,7
+009F   2???           00245         CALL            TOPLAMA
+00A0   0008           00246         RETURN
+                      00247         
+00A1                  00248 DEGER_TEMIZLE
+00A1   01AA           00249         CLRF    BIRLER
+00A2   01AB           00250         CLRF    ONLAR
+00A3   01AC           00251         CLRF    YUZLER
+00A4   01AE           00252         CLRF    SONUC
+00A5   01AD           00253         CLRF    ARA
+00A6   0008           00254         RETURN
+                      00255         
+00A7                  00256 DEGISTIR
+00A7   00AD           00257         MOVWF   ARA
+00A8   082B           00258         MOVFW   ONLAR
+00A9   00AC           00259         MOVWF   YUZLER
+                      00260         
+00AA   082A           00261         MOVFW   BIRLER
+00AB   00AB           00262         MOVWF   ONLAR
+                      00263         
+00AC   082D           00264         MOVFW   ARA
+00AD   00AA           00265         MOVWF   BIRLER
+00AE   0008           00266         RETURN
+00AF                  00267 SAYI_0
+00AF   2???           00268         CALL    GECIKME_196MS
+00B0   3030           00269         MOVLW   '0'
+00B1   2???           00270         CALL    LCD_KARAKTER_YAZ
+00B2   3000           00271         MOVLW   0X00
+00B3   2???           00272         CALL    DEGISTIR
+00B4   0008           00273         RETURN
+                      00274         
+00B5                  00275 SAYI_1
+00B5   2???           00276         CALL    GECIKME_196MS
+00B6   3031           00277         MOVLW   '1'
+00B7   2???           00278         CALL    LCD_KARAKTER_YAZ
+00B8   3001           00279         MOVLW   0X01
+00B9   2???           00280         CALL    DEGISTIR
+00BA   0008           00281         RETURN
+                      00282         
+                      00283         
+00BB                  00284 SAYI_2
+00BB   2???           00285         CALL    GECIKME_196MS
+00BC   3032           00286         MOVLW   '2'
+00BD   2???           00287         CALL    LCD_KARAKTER_YAZ
+00BE   3002           00288         MOVLW   0X02
+MPASM 5.84  /USERS/NURULLAH/MPLABXPROJECTS/O   11-18-2019  12:56:05         PAGE  7
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00BF   2???           00289         CALL    DEGISTIR
+00C0   0008           00290         RETURN
+                      00291         
+                      00292         
+00C1                  00293 SAYI_3
+00C1   2???           00294         CALL    GECIKME_196MS
+00C2   3033           00295         MOVLW   '3'
+00C3   2???           00296         CALL    LCD_KARAKTER_YAZ
+00C4   3003           00297         MOVLW   0X03
+00C5   2???           00298         CALL    DEGISTIR
+00C6   0008           00299         RETURN
+                      00300         
+                      00301         
+00C7                  00302 SAYI_4
+00C7   2???           00303         CALL    GECIKME_196MS
+00C8   3034           00304         MOVLW   '4'
+00C9   2???           00305         CALL    LCD_KARAKTER_YAZ
+00CA   3004           00306         MOVLW   0X04
+00CB   2???           00307         CALL    DEGISTIR
+00CC   0008           00308         RETURN
+                      00309         
+                      00310         
+00CD                  00311 SAYI_5
+00CD   2???           00312         CALL    GECIKME_196MS
+00CE   3035           00313         MOVLW   '5'
+00CF   2???           00314         CALL    LCD_KARAKTER_YAZ
+00D0   3005           00315         MOVLW   0X05
+00D1   2???           00316         CALL    DEGISTIR
+00D2   0008           00317         RETURN
+                      00318         
+                      00319         
+00D3                  00320 SAYI_6
+00D3   2???           00321         CALL    GECIKME_196MS
+00D4   3036           00322         MOVLW   '6'
+00D5   2???           00323         CALL    LCD_KARAKTER_YAZ
+00D6   3006           00324         MOVLW   0X06
+00D7   2???           00325         CALL    DEGISTIR
+00D8   0008           00326         RETURN
+                      00327         
+                      00328         
+00D9                  00329 SAYI_7
+00D9   2???           00330         CALL    GECIKME_196MS
+00DA   3037           00331         MOVLW   '7'
+00DB   2???           00332         CALL    LCD_KARAKTER_YAZ
+00DC   3007           00333         MOVLW   0X07
+00DD   2???           00334         CALL    DEGISTIR
+00DE   0008           00335         RETURN
+                      00336         
+00DF                  00337 SAYI_8
+00DF   2???           00338         CALL    GECIKME_196MS
+00E0   3038           00339         MOVLW   '8'
+00E1   2???           00340         CALL    LCD_KARAKTER_YAZ
+00E2   3008           00341         MOVLW   0X08
+MPASM 5.84  /USERS/NURULLAH/MPLABXPROJECTS/O   11-18-2019  12:56:05         PAGE  8
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00E3   2???           00342         CALL    DEGISTIR
+00E4   0008           00343         RETURN
+                      00344         
+00E5                  00345 SAYI_9
+00E5   2???           00346         CALL    GECIKME_196MS
+00E6   3039           00347         MOVLW   '9'
+00E7   2???           00348         CALL    LCD_KARAKTER_YAZ
+00E8   3009           00349         MOVLW   0X09
+00E9   2???           00350         CALL    DEGISTIR
+00EA   0008           00351         RETURN
+                      00352         
+00EB                  00353 LCD_SAYI_DEGERIMIZ
+00EB   01AE           00354         CLRF    SONUC
+                      00355 
+00EC   3000           00356         MOVLW   0X00
+00ED   022C           00357         SUBWF   YUZLER,W
+00EE   1D03           00358         BTFSS   STATUS,Z
+00EF   2???           00359         CALL    YUZLUK
+00F0   3000           00360         MOVLW   0X00
+00F1   022B           00361         SUBWF   ONLAR,W
+00F2   1D03           00362         BTFSS   STATUS,Z
+00F3   2???           00363         CALL    ONLUK
+                      00364 
+00F4   082B           00365         MOVFW   ONLAR
+00F5   07AE           00366         ADDWF   SONUC,F
+                      00367         
+00F6   082A           00368         MOVFW   BIRLER
+00F7   07AE           00369         ADDWF   SONUC,F
+                      00370         
+00F8   082E           00371         MOVFW   SONUC
+00F9   0008           00372         RETURN
+                      00373 
+Warning[207]: Found label after column 1. (ONLUK)
+00FA                  00374         ONLUK
+00FA   300A           00375         MOVLW   D'10'
+00FB   07AE           00376         ADDWF   SONUC,F
+Message[305]: Using default destination of 1 (file).
+00FC   0BAB           00377         DECFSZ  ONLAR
+00FD   2???           00378         GOTO    ONLUK
+00FE   082E           00379         MOVFW   SONUC
+00FF   00AB           00380         MOVWF   ONLAR   
+0100   01AE           00381         CLRF    SONUC
+0101   0008           00382         RETURN
+                      00383         
+Warning[207]: Found label after column 1. (YUZLUK)
+0102                  00384         YUZLUK
+0102   3064           00385         MOVLW   D'100'
+0103   07AE           00386         ADDWF   SONUC,F
+Message[305]: Using default destination of 1 (file).
+0104   0BAC           00387         DECFSZ  YUZLER
+0105   2???           00388         GOTO    YUZLUK
+0106   0008           00389         RETURN
+                      00390 
+MPASM 5.84  /USERS/NURULLAH/MPLABXPROJECTS/O   11-18-2019  12:56:05         PAGE  9
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00391         
+0107                  00392 TOPLAMA
+0107   2???           00393         CALL    GECIKME_196MS
+0108   302B           00394         MOVLW   '+'
+0109   2???           00395         CALL    LCD_KARAKTER_YAZ
+010A   2???           00396         CALL    LCD_SAYI_DEGERIMIZ
+010B   00A7           00397         MOVWF   ILK_DEGER
+                      00398         
+010C   2???           00399         CALL    DEGER_TEMIZLE
+010D   1429           00400         BSF     ISLEM_REG,0
+010E   0008           00401         RETURN
+                      00402         
+010F                  00403 CIKARMA
+010F   2???           00404         CALL    GECIKME_196MS
+0110   302D           00405         MOVLW   '-'
+0111   2???           00406         CALL    LCD_KARAKTER_YAZ
+0112   2???           00407         CALL    LCD_SAYI_DEGERIMIZ
+0113   00A7           00408         MOVWF   ILK_DEGER
+                      00409         
+0114   2???           00410         CALL    DEGER_TEMIZLE
+0115   14A9           00411         BSF     ISLEM_REG,1
+0116   0008           00412         RETURN
+                      00413         
+0117                  00414 CARPMA
+0117   2???           00415         CALL    GECIKME_196MS
+0118   302A           00416         MOVLW   '*'
+0119   2???           00417         CALL    LCD_KARAKTER_YAZ
+011A   2???           00418         CALL    LCD_SAYI_DEGERIMIZ
+011B   00A7           00419         MOVWF   ILK_DEGER
+                      00420         
+011C   2???           00421         CALL    DEGER_TEMIZLE
+011D   1529           00422         BSF     ISLEM_REG,2
+011E   0008           00423         RETURN
+                      00424         
+011F                  00425 BOLME
+011F   2???           00426         CALL    GECIKME_196MS
+0120   302F           00427         MOVLW   '/'
+0121   2???           00428         CALL    LCD_KARAKTER_YAZ
+0122   2???           00429         CALL    LCD_SAYI_DEGERIMIZ
+0123   00A7           00430         MOVWF   ILK_DEGER
+                      00431         
+0124   2???           00432         CALL    DEGER_TEMIZLE
+0125   15A9           00433         BSF     ISLEM_REG,3
+0126   0008           00434         RETURN
+                      00435         
+0127                  00436 TEMIZLE
+0127   2???           00437         CALL    GECIKME_196MS
+0128   2???           00438         CALL    DEGER_TEMIZLE
+0129   01A9           00439         CLRF    ISLEM_REG
+                      00440         
+012A   1206           00441         BCF     PORTB,4
+012B   3001           00442         MOVLW   0x01
+012C   2???           00443         CALL    KOMUT_8BIT
+MPASM 5.84  /USERS/NURULLAH/MPLABXPROJECTS/O   11-18-2019  12:56:05         PAGE 10
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+012D   2???           00444         CALL    GECIKME_200USN  
+012E   0008           00445         RETURN
+                      00446         
+012F                  00447 ESITTIR
+012F   2???           00448         CALL    GECIKME_196MS
+0130   2???           00449         CALL    LCD_SAYI_DEGERIMIZ
+0131   00A8           00450         MOVWF   SON_DEGER
+0132   01AE           00451         CLRF    SONUC
+                      00452         
+0133   1829           00453         BTFSC   ISLEM_REG,0
+0134   2???           00454         CALL    TOPLAM_SONUC
+0135   18A9           00455         BTFSC   ISLEM_REG,1
+0136   2???           00456         CALL    CIKARMA_SONUC
+0137   1929           00457         BTFSC   ISLEM_REG,2
+0138   2???           00458         CALL    CARPMA_SONUC
+0139   19A9           00459         BTFSC   ISLEM_REG,3
+013A   2???           00460         CALL    BOLME_SONUC
+                      00461         
+013B   01A9           00462         CLRF    ISLEM_REG
+013C   01AA           00463         CLRF    BIRLER
+013D   01AB           00464         CLRF    ONLAR
+013E   01AC           00465         CLRF    YUZLER
+                      00466 
+013F   2???           00467         CALL    KARAKTER_BOL
+                      00468         
+0140   30C0           00469         MOVLW   0XC0
+0141   2???           00470         CALL    KOMUT_8BIT
+                      00471         
+                      00472         
+0142   3030           00473         MOVLW   D'48'
+0143   072C           00474         ADDWF   YUZLER,W
+0144   2???           00475         CALL    LCD_KARAKTER_YAZ
+                      00476         
+0145   3030           00477         MOVLW   D'48'
+0146   072B           00478         ADDWF   ONLAR,W
+0147   2???           00479         CALL    LCD_KARAKTER_YAZ
+                      00480         
+0148   3030           00481         MOVLW   D'48'
+0149   072A           00482         ADDWF   BIRLER,W
+014A   2???           00483         CALL    LCD_KARAKTER_YAZ
+                      00484         
+014B   0008           00485         RETURN
+014C                  00486 TOPLAM_SONUC
+014C   0827           00487         MOVFW   ILK_DEGER
+014D   0728           00488         ADDWF   SON_DEGER,W
+014E   00AE           00489         MOVWF   SONUC
+014F   0008           00490         RETURN
+                      00491 
+0150                  00492 CIKARMA_SONUC
+0150   0828           00493         MOVFW   SON_DEGER
+0151   0227           00494         SUBWF   ILK_DEGER,W
+0152   00AE           00495         MOVWF   SONUC
+0153   0008           00496         RETURN
+MPASM 5.84  /USERS/NURULLAH/MPLABXPROJECTS/O   11-18-2019  12:56:05         PAGE 11
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00497 
+0154                  00498 CARPMA_SONUC
+0154   0827           00499         MOVFW   ILK_DEGER
+0155   07AE           00500         ADDWF   SONUC,F
+Message[305]: Using default destination of 1 (file).
+0156   0BA8           00501         DECFSZ  SON_DEGER
+0157   2???           00502         GOTO    CARPMA_SONUC
+0158   0008           00503         RETURN
+                      00504         
+0159                  00505 BOLME_SONUC
+0159   0828           00506         MOVFW   SON_DEGER
+015A   0227           00507         SUBWF   ILK_DEGER,W
+015B   1C03           00508         BTFSS   STATUS,C
+015C   0008           00509         RETURN
+015D   00A7           00510         MOVWF   ILK_DEGER
+Message[305]: Using default destination of 1 (file).
+015E   0AAE           00511         INCF    SONUC
+015F   2???           00512         GOTO    BOLME_SONUC
+                      00513         
+0160                  00514 KARAKTER_BOL
+                      00515         
+Warning[207]: Found label after column 1. (BASAMAK100)
+0160                  00516         BASAMAK100
+0160   3064           00517         MOVLW   D'100'
+0161   022E           00518         SUBWF   SONUC,W
+0162   1C03           00519         BTFSS   STATUS,C
+0163   2???           00520         GOTO    $+4
+Message[305]: Using default destination of 1 (file).
+0164   0AAC           00521         INCF    YUZLER
+0165   00AE           00522         MOVWF   SONUC
+0166   2???           00523         GOTO    BASAMAK100
+                      00524         
+Warning[207]: Found label after column 1. (BASAMAK10)
+0167                  00525         BASAMAK10
+0167   300A           00526         MOVLW   D'10'
+0168   022E           00527         SUBWF   SONUC,W
+0169   1C03           00528         BTFSS   STATUS,C
+016A   2???           00529         GOTO    $+4
+Message[305]: Using default destination of 1 (file).
+016B   0AAB           00530         INCF    ONLAR
+016C   00AE           00531         MOVWF   SONUC
+016D   2???           00532         GOTO    BASAMAK10
+                      00533         
+016E   082E           00534         MOVFW   SONUC
+016F   00AA           00535         MOVWF   BIRLER
+                      00536         
+0170   0008           00537         RETURN
+Warning[205]: Found directive in column 1. (END)
+                      00538 END     ; Program sonu
+MPASM 5.84  /USERS/NURULLAH/MPLABXPROJECTS/O   11-18-2019  12:56:05         PAGE 12
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+ACKDT                             00000005
+ACKEN                             00000004
+ACKSTAT                           00000006
+ADCON0                            0000001F
+ADCON1                            0000009F
+ADCS0                             00000006
+ADCS1                             00000007
+ADCS2                             00000006
+ADDEN                             00000003
+ADFM                              00000007
+ADIE                              00000006
+ADIF                              00000006
+ADON                              00000000
+ADRESH                            0000001E
+ADRESL                            0000009E
+ARA                               0000002D
+BASAMAK10                         00000167
+BASAMAK100                        00000160
+BCLIE                             00000003
+BCLIF                             00000003
+BF                                00000000
+BIRLER                            0000002A
+BOLME                             0000011F
+BOLME_SONUC                       00000159
+BRGH                              00000002
+C                                 00000000
+C1INV                             00000004
+C1OUT                             00000006
+C2INV                             00000005
+C2OUT                             00000007
+CARPMA                            00000117
+CARPMA_SONUC                      00000154
+CCP1CON                           00000017
+CCP1IE                            00000002
+CCP1IF                            00000002
+CCP1M0                            00000000
+CCP1M1                            00000001
+CCP1M2                            00000002
+CCP1M3                            00000003
+CCP1X                             00000005
+CCP1Y                             00000004
+CCP2CON                           0000001D
+CCP2IE                            00000000
+CCP2IF                            00000000
+CCP2M0                            00000000
+CCP2M1                            00000001
+CCP2M2                            00000002
+CCP2M3                            00000003
+CCP2X                             00000005
+CCP2Y                             00000004
+CCPR1                             00000015
+CCPR1H                            00000016
+CCPR1L                            00000015
+MPASM 5.84  /USERS/NURULLAH/MPLABXPROJECTS/O   11-18-2019  12:56:05         PAGE 13
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+CCPR2                             0000001B
+CCPR2H                            0000001C
+CCPR2L                            0000001B
+CHS0                              00000003
+CHS1                              00000004
+CHS2                              00000005
+CIKARMA                           0000010F
+CIKARMA_SONUC                     00000150
+CIS                               00000003
+CKE                               00000006
+CKP                               00000004
+CM0                               00000000
+CM1                               00000001
+CM2                               00000002
+CMCON                             0000009C
+CMIE                              00000006
+CMIF                              00000006
+CREN                              00000004
+CSRC                              00000007
+CVR0                              00000000
+CVR1                              00000001
+CVR2                              00000002
+CVR3                              00000003
+CVRCON                            0000009D
+CVREN                             00000007
+CVROE                             00000006
+CVRR                              00000005
+D                                 00000005
+DATA_ADDRESS                      00000005
+DC                                00000001
+DEGER_TEMIZLE                     000000A1
+DEGISTIR                          000000A7
+DNGU1                             00000004
+DUSEN_KENAR                       0000001E
+DUSUK_4                           00000023
+D_A                               00000005
+D_NOT_A                           00000005
+EEADR                             0000010D
+EEADRH                            0000010F
+EECON1                            0000018C
+EECON2                            0000018D
+EEDATA                            0000010C
+EEDATH                            0000010E
+EEIE                              00000004
+EEIF                              00000004
+EEPGD                             00000007
+ESITTIR                           0000012F
+F                                 00000001
+FERR                              00000002
+FSR                               00000004
+GCEN                              00000007
+GECIKME1                          00000020
+GECIKME2                          00000021
+MPASM 5.84  /USERS/NURULLAH/MPLABXPROJECTS/O   11-18-2019  12:56:05         PAGE 14
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+GECIKME3                          00000022
+GECIKME_196MS                     00000013
+GECIKME_200USN                    00000002
+GECIKME_50MSN                     0000000D
+GECIKME_5MSN                      00000007
+GECIKTIR                          00000019
+GIE                               00000007
+GO                                00000002
+GO_DONE                           00000002
+GO_NOT_DONE                       00000002
+I2C_DATA                          00000005
+I2C_READ                          00000002
+I2C_START                         00000003
+I2C_STOP                          00000004
+IBF                               00000007
+IBOV                              00000005
+ILK_DEGER                         00000027
+INDF                              00000000
+INTCON                            0000000B
+INTE                              00000004
+INTEDG                            00000006
+INTF                              00000001
+IRP                               00000007
+ISLEM_REG                         00000029
+KARAKTER_BOL                      00000160
+KOMUT_4BIT                        00000024
+KOMUT_8BIT                        0000002D
+KONTROL                           0000006E
+KURSOR_KONUM                      00000067
+LCD_AYARLA                        00000040
+LCD_KARAKTER_YAZ                  00000037
+LCD_SAYI_DEGERIMIZ                000000EB
+NOT_A                             00000005
+NOT_ADDRESS                       00000005
+NOT_BO                            00000000
+NOT_BOR                           00000000
+NOT_DONE                          00000002
+NOT_PD                            00000003
+NOT_POR                           00000001
+NOT_RBPU                          00000007
+NOT_RC8                           00000006
+NOT_T1SYNC                        00000002
+NOT_TO                            00000004
+NOT_TX8                           00000006
+NOT_W                             00000002
+NOT_WRITE                         00000002
+OBF                               00000006
+OERR                              00000001
+ONLAR                             0000002B
+ONLUK                             000000FA
+OPTION_REG                        00000081
+P                                 00000004
+PCFG0                             00000000
+MPASM 5.84  /USERS/NURULLAH/MPLABXPROJECTS/O   11-18-2019  12:56:05         PAGE 15
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+PCFG1                             00000001
+PCFG2                             00000002
+PCFG3                             00000003
+PCL                               00000002
+PCLATH                            0000000A
+PCON                              0000008E
+PEIE                              00000006
+PEN                               00000002
+PIE1                              0000008C
+PIE2                              0000008D
+PIR1                              0000000C
+PIR2                              0000000D
+PORTA                             00000005
+PORTB                             00000006
+PORTC                             00000007
+PORTD                             00000008
+PORTE                             00000009
+PR2                               00000092
+PS0                               00000000
+PS1                               00000001
+PS2                               00000002
+PSA                               00000003
+PSPIE                             00000007
+PSPIF                             00000007
+PSPMODE                           00000004
+R                                 00000002
+RA0                               00000000
+RA1                               00000001
+RA2                               00000002
+RA3                               00000003
+RA4                               00000004
+RA5                               00000005
+RB0                               00000000
+RB1                               00000001
+RB2                               00000002
+RB3                               00000003
+RB4                               00000004
+RB5                               00000005
+RB6                               00000006
+RB7                               00000007
+RBIE                              00000003
+RBIF                              00000000
+RC0                               00000000
+RC1                               00000001
+RC2                               00000002
+RC3                               00000003
+RC4                               00000004
+RC5                               00000005
+RC6                               00000006
+RC7                               00000007
+RC8_9                             00000006
+RC9                               00000006
+RCD8                              00000000
+MPASM 5.84  /USERS/NURULLAH/MPLABXPROJECTS/O   11-18-2019  12:56:05         PAGE 16
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+RCEN                              00000003
+RCIE                              00000005
+RCIF                              00000005
+RCREG                             0000001A
+RCSTA                             00000018
+RD                                00000000
+RD0                               00000000
+RD1                               00000001
+RD2                               00000002
+RD3                               00000003
+RD4                               00000004
+RD5                               00000005
+RD6                               00000006
+RD7                               00000007
+RE0                               00000000
+RE1                               00000001
+RE2                               00000002
+READ_WRITE                        00000002
+RP0                               00000005
+RP1                               00000006
+RSEN                              00000001
+RX9                               00000006
+RX9D                              00000000
+R_NOT_W                           00000002
+R_W                               00000002
+S                                 00000003
+SATIR0                            0000007D
+SATIR1                            00000086
+SATIR2                            0000008F
+SATIR3                            00000098
+SATIR_KONUM                       00000025
+SAYI_0                            000000AF
+SAYI_1                            000000B5
+SAYI_2                            000000BB
+SAYI_3                            000000C1
+SAYI_4                            000000C7
+SAYI_5                            000000CD
+SAYI_6                            000000D3
+SAYI_7                            000000D9
+SAYI_8                            000000DF
+SAYI_9                            000000E5
+SEN                               00000000
+SMP                               00000007
+SONUC                             0000002E
+SON_DEGER                         00000028
+SPBRG                             00000099
+SPEN                              00000007
+SREN                              00000005
+SSPADD                            00000093
+SSPBUF                            00000013
+SSPCON                            00000014
+SSPCON2                           00000091
+SSPEN                             00000005
+MPASM 5.84  /USERS/NURULLAH/MPLABXPROJECTS/O   11-18-2019  12:56:05         PAGE 17
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+SSPIE                             00000003
+SSPIF                             00000003
+SSPM0                             00000000
+SSPM1                             00000001
+SSPM2                             00000002
+SSPM3                             00000003
+SSPOV                             00000006
+SSPSTAT                           00000094
+STATUS                            00000003
+SUTUN_KONUM                       00000026
+SYNC                              00000004
+T0CS                              00000005
+T0IE                              00000005
+T0IF                              00000002
+T0SE                              00000004
+T1CKPS0                           00000004
+T1CKPS1                           00000005
+T1CON                             00000010
+T1INSYNC                          00000002
+T1OSCEN                           00000003
+T1SYNC                            00000002
+T2CKPS0                           00000000
+T2CKPS1                           00000001
+T2CON                             00000012
+TEMIZLE                           00000127
+TMR0                              00000001
+TMR0IE                            00000005
+TMR0IF                            00000002
+TMR1                              0000000E
+TMR1CS                            00000001
+TMR1H                             0000000F
+TMR1IE                            00000000
+TMR1IF                            00000000
+TMR1L                             0000000E
+TMR1ON                            00000000
+TMR2                              00000011
+TMR2IE                            00000001
+TMR2IF                            00000001
+TMR2ON                            00000002
+TOPLAMA                           00000107
+TOPLAM_SONUC                      0000014C
+TOUTPS0                           00000003
+TOUTPS1                           00000004
+TOUTPS2                           00000005
+TOUTPS3                           00000006
+TRISA                             00000085
+TRISA0                            00000000
+TRISA1                            00000001
+TRISA2                            00000002
+TRISA3                            00000003
+TRISA4                            00000004
+TRISA5                            00000005
+TRISB                             00000086
+MPASM 5.84  /USERS/NURULLAH/MPLABXPROJECTS/O   11-18-2019  12:56:05         PAGE 18
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+TRISB0                            00000000
+TRISB1                            00000001
+TRISB2                            00000002
+TRISB3                            00000003
+TRISB4                            00000004
+TRISB5                            00000005
+TRISB6                            00000006
+TRISB7                            00000007
+TRISC                             00000087
+TRISC0                            00000000
+TRISC1                            00000001
+TRISC2                            00000002
+TRISC3                            00000003
+TRISC4                            00000004
+TRISC5                            00000005
+TRISC6                            00000006
+TRISC7                            00000007
+TRISD                             00000088
+TRISD0                            00000000
+TRISD1                            00000001
+TRISD2                            00000002
+TRISD3                            00000003
+TRISD4                            00000004
+TRISD5                            00000005
+TRISD6                            00000006
+TRISD7                            00000007
+TRISE                             00000089
+TRISE0                            00000000
+TRISE1                            00000001
+TRISE2                            00000002
+TRMT                              00000001
+TX8_9                             00000006
+TX9                               00000006
+TX9D                              00000000
+TXD8                              00000000
+TXEN                              00000005
+TXIE                              00000004
+TXIF                              00000004
+TXREG                             00000019
+TXSTA                             00000098
+UA                                00000001
+VERI                              00000024
+W                                 00000000
+WCOL                              00000007
+WR                                00000001
+WREN                              00000002
+WRERR                             00000003
+YUZLER                            0000002C
+YUZLUK                            00000102
+Z                                 00000002
+_.org_0_0077                      00000077
+_.org_0_0163                      00000163
+_.org_0_016A                      0000016A
+MPASM 5.84  /USERS/NURULLAH/MPLABXPROJECTS/O   11-18-2019  12:56:05         PAGE 19
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_BODEN_OFF                        00003FBF
+_BODEN_ON                         00003FFF
+_BOREN_OFF                        00003FBF
+_BOREN_ON                         00003FFF
+_CONFIG                           00002007
+_CPD_OFF                          00003FFF
+_CPD_ON                           00003EFF
+_CP_ALL                           00001FFF
+_CP_OFF                           00003FFF
+_CP_ON                            00001FFF
+_DEBUG_OFF                        00003FFF
+_DEBUG_ON                         000037FF
+_DEVID1                           00002006
+_FOSC_EXTRC                       00003FFF
+_FOSC_HS                          00003FFE
+_FOSC_LP                          00003FFC
+_FOSC_XT                          00003FFD
+_HS_OSC                           00003FFE
+_IDLOC0                           00002000
+_IDLOC1                           00002001
+_IDLOC2                           00002002
+_IDLOC3                           00002003
+_LP_OSC                           00003FFC
+_LVP_OFF                          00003F7F
+_LVP_ON                           00003FFF
+_PWRTE_OFF                        00003FFF
+_PWRTE_ON                         00003FF7
+_RC_OSC                           00003FFF
+_WDTE_OFF                         00003FFB
+_WDTE_ON                          00003FFF
+_WDT_OFF                          00003FFB
+_WDT_ON                           00003FFF
+_WRT_1FOURTH                      00003BFF
+_WRT_256                          00003DFF
+_WRT_HALF                         000039FF
+_WRT_OFF                          00003FFF
+_XT_OSC                           00003FFD
+__16F877A                         00000001
+__DEBUG                           
+__MPLAB_DEBUGGER_SIMULATOR        1
+
+Errors   :     0
+Warnings :    17 reported,     0 suppressed
+Messages :    10 reported,     0 suppressed
+
+

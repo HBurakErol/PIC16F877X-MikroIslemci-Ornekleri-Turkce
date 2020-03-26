@@ -1,0 +1,40 @@
+MPLINK 4.49, Linker
+Linker Map File - Created Wed Oct 23 16:36:23 2019
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x000002
+                   .cinit    romdata   0x000001    program   0x000004
+                   .org_1       code   0x000004    program   0x00001e
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000002      
+                            0x000004    0x000012      
+            18 out of 8454 program addresses used, program memory utilization is 0%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                    BASLA   0x000004    program     static C:\Users\Shanyu\Desktop\mplab projeler\deneme2\deneme2.asm
+                    KESME   0x000004    program     static C:\Users\Shanyu\Desktop\mplab projeler\deneme2\deneme2.asm
+                     SAGA   0x00000b    program     static C:\Users\Shanyu\Desktop\mplab projeler\deneme2\deneme2.asm
+                     SOLA   0x00000f    program     static C:\Users\Shanyu\Desktop\mplab projeler\deneme2\deneme2.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                    BASLA   0x000004    program     static C:\Users\Shanyu\Desktop\mplab projeler\deneme2\deneme2.asm
+                    KESME   0x000004    program     static C:\Users\Shanyu\Desktop\mplab projeler\deneme2\deneme2.asm
+                     SAGA   0x00000b    program     static C:\Users\Shanyu\Desktop\mplab projeler\deneme2\deneme2.asm
+                     SOLA   0x00000f    program     static C:\Users\Shanyu\Desktop\mplab projeler\deneme2\deneme2.asm
+
+

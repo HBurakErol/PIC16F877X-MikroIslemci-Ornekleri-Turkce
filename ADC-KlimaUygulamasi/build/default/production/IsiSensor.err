@@ -1,0 +1,20 @@
+Warning[205] /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm 2 : Found directive in column 1. (LIST)
+Warning[205] /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm 4 : Found directive in column 1. (ORG)
+Warning[203] /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm 24 : Found opcode in column 1. (CALL)
+Warning[203] /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm 25 : Found opcode in column 1. (GOTO)
+Warning[207] /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm 30 : Found label after column 1. (DNGU1)
+Message[302] /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm 115 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm 120 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm 122 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm 167 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm 171 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Warning[207] /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm 176 : Found label after column 1. (DONUSTUR)
+Message[305] /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm 188 : Using default destination of 1 (file).
+Message[305] /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm 191 : Using default destination of 1 (file).
+Message[302] /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm 191 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm 192 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Warning[207] /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm 249 : Found label after column 1. (BASAMAK100)
+Message[305] /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm 254 : Using default destination of 1 (file).
+Warning[207] /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm 258 : Found label after column 1. (BASAMAK10)
+Message[305] /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm 263 : Using default destination of 1 (file).
+Warning[205] /Users/Nurullah/MPLABXProjects/Odev6Adc.X/IsiSensor.asm 271 : Found directive in column 1. (END)

@@ -1,0 +1,33 @@
+Warning[205] /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm 2 : Found directive in column 1. (LIST)
+Warning[205] /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm 4 : Found directive in column 1. (ORG)
+Warning[203] /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm 23 : Found opcode in column 1. (CLRF)
+Warning[203] /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm 24 : Found opcode in column 1. (CLRF)
+Warning[203] /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm 25 : Found opcode in column 1. (CLRF)
+Warning[203] /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm 26 : Found opcode in column 1. (CLRF)
+Warning[203] /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm 27 : Found opcode in column 1. (CLRF)
+Warning[203] /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm 28 : Found opcode in column 1. (CLRF)
+Warning[203] /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm 29 : Found opcode in column 1. (CLRF)
+Warning[203] /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm 31 : Found opcode in column 1. (CALL)
+Warning[203] /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm 32 : Found opcode in column 1. (GOTO)
+Warning[207] /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm 86 : Found label after column 1. (KOMUT_4BIT)
+Warning[207] /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm 106 : Found label after column 1. (KOMUT_8BIT)
+Message[302] /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm 139 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm 144 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm 146 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Warning[207] /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm 202 : Found label after column 1. (KONTROL)
+Message[305] /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm 219 : Using default destination of 1 (file).
+Warning[207] /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm 223 : Found label after column 1. (SATIR0)
+Warning[207] /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm 234 : Found label after column 1. (SATIR1)
+Warning[207] /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm 245 : Found label after column 1. (SATIR2)
+Warning[207] /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm 256 : Found label after column 1. (SATIR3)
+Warning[207] /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm 374 : Found label after column 1. (ONLUK)
+Message[305] /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm 377 : Using default destination of 1 (file).
+Warning[207] /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm 384 : Found label after column 1. (YUZLUK)
+Message[305] /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm 387 : Using default destination of 1 (file).
+Message[305] /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm 504 : Using default destination of 1 (file).
+Message[305] /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm 514 : Using default destination of 1 (file).
+Warning[207] /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm 519 : Found label after column 1. (BASAMAK100)
+Message[305] /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm 524 : Using default destination of 1 (file).
+Warning[207] /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm 528 : Found label after column 1. (BASAMAK10)
+Message[305] /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm 533 : Using default destination of 1 (file).
+Warning[205] /Users/Nurullah/MPLABXProjects/Odev4Hesap.X/HesapMakinesi.asm 541 : Found directive in column 1. (END)
